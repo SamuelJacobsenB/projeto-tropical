@@ -15,7 +15,7 @@ export default {
           yellow: "#f8de7e",
         },
         light: {
-          primary: "#7b797b",
+          primary: "#484848",
         },
       },
     },

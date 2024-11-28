@@ -1,9 +1,9 @@
-import { Menu } from "@/components";
+import { Template } from "@/components";
 
 export default function Home() {
   return (
-    <div>
-      <Menu />
-    </div>
+    <Template>
+      <h1>Teste</h1>
+    </Template>
   );
 }
