@@ -9,3 +9,11 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+.flex-center {
+  @apply justify-center items-center;
+}
+
+.menu-item {
+  @apply text-white text-lg decoration-red-600 decoration-2 hover:underline md:text-xl;
+}
