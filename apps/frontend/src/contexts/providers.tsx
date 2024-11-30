@@ -1,4 +1,4 @@
-"use cleint";
+"use client";
 
 import React from "react";
 import { QueryProvider } from "./queryprovider";
