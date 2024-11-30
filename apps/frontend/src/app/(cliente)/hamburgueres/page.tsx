@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { Template, ProductCard } from "@/components";
+import { Template, LoadPage, ProductCard } from "@/components";
 import { useProducts } from "@/hooks/useProducts";
 
 const HamburgueresPage = () => {
   const { data, isFetching, error } = useProducts("hamburguer");
 
   if (isFetching) {
-    return <div>Carregando...</div>;
+    return <LoadPage />;
   }
 
   if (error) {
@@ -25,7 +25,25 @@ const HamburgueresPage = () => {
         className="flex w-full h-80 object-cover"
       />
       <h1 className="text-white text-3xl m-8">Hambúrgueres:</h1>
-      <div className="flex flex-wrap gap-4 w-full p-4 justify-around"></div>
+      <div className="flex flex-wrap gap-4 w-full p-4 justify-around">
+        {data?.length === 0 && (
+          <h2 className="text-lg text-white">
+            Nenhum produto desta categoria foi cadastrado
+          </h2>
+        )}
+
+        {data?.length !== undefined &&
+          data.length > 0 &&
+          data?.map((product) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              price={product.price}
+              src={product.image}
+              alt={product.name}
+            />
+          ))}
+      </div>
     </Template>
   );
 };
