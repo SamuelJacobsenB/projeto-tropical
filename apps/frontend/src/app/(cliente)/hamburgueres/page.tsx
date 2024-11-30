@@ -1,8 +1,20 @@
-import React from "react";
+"use client";
+
 import Image from "next/image";
 import { Template, ProductCard } from "@/components";
+import { useProducts } from "@/hooks/useProducts";
 
 const HamburgueresPage = () => {
+  const { data, isFetching, error } = useProducts("hamburguer");
+
+  if (isFetching) {
+    return <div>Carregando...</div>;
+  }
+
+  if (error) {
+    return <div>Erro ao carregar os produtos: {error.message}</div>;
+  }
+
   return (
     <Template>
       <Image
