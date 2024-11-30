@@ -13,6 +13,6 @@ export function useProducts(category: Category) {
   return useQuery({
     queryKey: ["hamburgueres"],
     queryFn: fetchData,
-    staleTime: 1000 * 60 * 30,
+    staleTime: 1000 * 60 * 60,
   });
 }
