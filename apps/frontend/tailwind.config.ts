@@ -11,11 +11,12 @@ export default {
       colors: {
         primary: "#343434",
         secondary: "#e7e6e7",
-        custom: {
-          yellow: "#f8de7e",
-        },
         light: {
           primary: "#484848",
+        },
+        dark: {
+          green: "#021700",
+          red: "#390000",
         },
       },
       animation: {

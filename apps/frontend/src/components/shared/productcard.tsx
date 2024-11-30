@@ -5,11 +5,21 @@ interface ProductCardProps {
   alt: string;
   name: string;
   price: number;
+  onClick?: () => void;
 }
 
-export const ProductCard = ({ src, alt, name, price }: ProductCardProps) => {
+export const ProductCard = ({
+  src,
+  alt,
+  name,
+  price,
+  onClick,
+}: ProductCardProps) => {
   return (
-    <div className="flex flex-col bg-primary rounded-lg h-64 overflow-hidden cursor-pointer">
+    <div
+      className="flex flex-col bg-primary rounded-lg h-64 overflow-hidden cursor-pointer"
+      onClick={onClick}
+    >
       <Image
         src={src}
         alt={alt}

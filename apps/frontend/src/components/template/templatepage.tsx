@@ -6,7 +6,7 @@ export interface TemplatePageProps {
 
 export const TemplatePage = ({ children }: TemplatePageProps) => {
   return (
-    <main className="bg-light-primary w-full min-h-full mt-40 md:w-full md:mt-0 md:ml-60 md:min-h-screen">
+    <main className="bg-light-primary w-screen min-h-screen pt-40 md:pt-0 md:pl-60">
       {children}
     </main>
   );
