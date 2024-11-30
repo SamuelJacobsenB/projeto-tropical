@@ -1,8 +1,8 @@
 "use client";
 
+import { useProducts } from "@/hooks/useProducts";
 import Image from "next/image";
 import { Template, LoadPage, ProductCard } from "@/components";
-import { useProducts } from "@/hooks/useProducts";
 
 const HamburgueresPage = () => {
   const { data, isFetching, error } = useProducts("hamburguer");

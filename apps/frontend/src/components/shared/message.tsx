@@ -18,7 +18,7 @@ export const Message = () => {
     >
       {type == "success" && <I.Success className="text-2xl" />}
       {type == "error" && <I.Error className="text-2xl" />}
-      Parece que houve um erro
+      {text}
     </div>
   );
 };
