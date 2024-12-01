@@ -4,6 +4,7 @@ interface ButtonProps {
   type?: "submit" | "button" | "reset";
   className?: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
 export const Button = ({ type, className, children }: ButtonProps) => {

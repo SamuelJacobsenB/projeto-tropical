@@ -1,12 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useProductModal } from "@/contexts/productmodal.provider";
 import { I, Button, Quantity } from "@/components";
 
 export const ProductModal = () => {
-  const { product, closeProductModal } = useProductModal();
+  const { product, closeProductModal, addNewProduct } = useProductModal();
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    if (!product || product === null) {
+      setQuantity(1);
+    }
+  }, [product]);
+
+  function HandleAddProduct() {
+    if (product) {
+      addNewProduct(product.id, quantity, product.price);
+    }
+  }
 
   if (!product || product === null) {
     return null;
@@ -32,7 +44,10 @@ export const ProductModal = () => {
         <big className="text-3xl m-2">R$ {product.price.toFixed(2)}</big>
         <span className="flex justify-between p-2">
           <Quantity quantity={quantity} setQuantity={setQuantity} />
-          <Button className="bg-green-700 hover:bg-green-800 text-white">
+          <Button
+            onClick={HandleAddProduct}
+            className="bg-green-700 hover:bg-green-800 text-white"
+          >
             Adicionar
           </Button>
         </span>
