@@ -1,11 +1,13 @@
 "use client";
 
 import { useProducts } from "@/hooks/useProducts";
+import { useProductModal } from "@/contexts/productmodal.provider";
 import Image from "next/image";
 import { Template, LoadPage, ProductCard } from "@/components";
 
 const HamburgueresPage = () => {
   const { data, isFetching, error } = useProducts("hamburguer");
+  const { showProductModal } = useProductModal();
 
   if (isFetching) {
     return <LoadPage />;
@@ -41,6 +43,14 @@ const HamburgueresPage = () => {
               price={product.price}
               src={product.image}
               alt={product.name}
+              onClick={() =>
+                showProductModal(
+                  product.name,
+                  product.price,
+                  product.description,
+                  product.image
+                )
+              }
             />
           ))}
       </div>
