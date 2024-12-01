@@ -1,13 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { useProductModal } from "@/contexts/productmodal.provider";
-import { I, Button } from "@/components";
+import { I, Button, Quantity } from "@/components";
 
 export const ProductModal = () => {
-  const { name, price, description, image, closeProductModal } =
-    useProductModal();
+  const { product, closeProductModal } = useProductModal();
+  const [quantity, setQuantity] = useState(1);
 
-  if (!name || !price || !description || !image) {
+  if (!product || product === null) {
     return null;
   }
 
@@ -17,19 +18,20 @@ export const ProductModal = () => {
         <div
           className={`w-full h-96 p-4 bg-cover`}
           style={{
-            backgroundImage: `url(${image})`,
+            backgroundImage: `url(${product.image})`,
           }}
         >
           <div className="flex justify-between bg-white p-1 text-3xl">
-            <h1>{name}</h1>
+            <h1>{product.name}</h1>
             <button onClick={closeProductModal}>
               <I.Close />
             </button>
           </div>
         </div>
-        <p className="p-4 text-lg min-h-44">{description}</p>
+        <p className="p-4 text-lg min-h-44">{product.description}</p>
+        <big className="text-3xl m-2">R$ {product.price.toFixed(2)}</big>
         <span className="flex justify-between p-2">
-          <big className="text-3xl">R$ {price.toFixed(2)}</big>
+          <Quantity quantity={quantity} setQuantity={setQuantity} />
           <Button className="bg-green-700 hover:bg-green-800 text-white">
             Adicionar
           </Button>

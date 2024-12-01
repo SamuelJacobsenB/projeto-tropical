@@ -8,3 +8,4 @@ export * from "./template/loadpage";
 export * from "./shared/message";
 export * from "./shared/productmodal";
 export * from "./shared/button";
+export * from "./shared/quantity";

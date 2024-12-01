@@ -43,14 +43,7 @@ const HamburgueresPage = () => {
               price={product.price}
               src={product.image}
               alt={product.name}
-              onClick={() =>
-                showProductModal(
-                  product.name,
-                  product.price,
-                  product.description,
-                  product.image
-                )
-              }
+              onClick={() => showProductModal(product)}
             />
           ))}
       </div>

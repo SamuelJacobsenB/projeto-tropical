@@ -1,18 +1,11 @@
 "use client";
 
 import React, { useState, useCallback, createContext, useContext } from "react";
+import { Product } from "@/types";
 
 interface ProductModal {
-  name: string | null;
-  price: number | null;
-  description: string | null;
-  image: string | null;
-  showProductModal: (
-    name: string,
-    price: number,
-    description: string,
-    image: string
-  ) => void;
+  product: Product | null;
+  showProductModal: (_product: Product) => void;
   closeProductModal: () => void;
 }
 
@@ -25,35 +18,20 @@ interface ProductModalProviderProps {
 export const ProductModalProvider = ({
   children,
 }: ProductModalProviderProps) => {
-  const [name, setName] = useState<string | null>(null);
-  const [price, setPrice] = useState<number | null>(null);
-  const [description, setDescription] = useState<string | null>(null);
-  const [image, setImage] = useState<string | null>(null);
+  const [product, setProduct] = useState<Product | null>(null);
 
-  const showProductModal = useCallback(
-    (name: string, price: number, description: string, image: string) => {
-      setName(name);
-      setPrice(price);
-      setDescription(description);
-      setImage(image);
-    },
-    []
-  );
+  const showProductModal = useCallback((_product: Product) => {
+    setProduct(_product);
+  }, []);
 
   const closeProductModal = useCallback(() => {
-    setName(null);
-    setPrice(null);
-    setDescription(null);
-    setImage(null);
+    setProduct(null);
   }, []);
 
   return (
     <ProductModalContext.Provider
       value={{
-        name,
-        price,
-        description,
-        image,
+        product,
         showProductModal,
         closeProductModal,
       }}
