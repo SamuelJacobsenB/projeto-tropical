@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Providers } from "@/contexts/providers";
-import { Message, ProductModal } from "@/components";
+import { Message, ProductModal, Order } from "@/components";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -19,6 +19,7 @@ export default function RootLayout({
         <body>
           <Message />
           <ProductModal />
+          <Order />
           {children}
         </body>
       </html>

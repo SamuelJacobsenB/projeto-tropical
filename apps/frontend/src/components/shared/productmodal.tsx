@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useProductModal } from "@/contexts/productmodal.provider";
+import { useMessage } from "@/contexts/message.provider";
 import { I, Button, Quantity } from "@/components";
 
 export const ProductModal = () => {
+  const { showMessage } = useMessage();
   const { product, closeProductModal, addNewProduct } = useProductModal();
   const [quantity, setQuantity] = useState(1);
 
@@ -17,6 +19,7 @@ export const ProductModal = () => {
   function HandleAddProduct() {
     if (product) {
       addNewProduct(product.id, quantity, product.price);
+      showMessage("Produto adicionado", "success");
     }
   }
 

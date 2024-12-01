@@ -10,6 +10,7 @@ interface ProductModal {
   showProductModal: (_product: Product) => void;
   closeProductModal: () => void;
   addNewProduct: (productId: string, quantity: number, _value: number) => void;
+  cancelOrder: () => void;
 }
 
 const ProductModalContext = createContext<ProductModal>({} as ProductModal);
@@ -57,6 +58,11 @@ export const ProductModalProvider = ({
     [closeProductModal, order, value]
   );
 
+  const cancelOrder = useCallback(() => {
+    setOrder(null);
+    setValue(null);
+  }, []);
+
   return (
     <ProductModalContext.Provider
       value={{
@@ -66,6 +72,7 @@ export const ProductModalProvider = ({
         showProductModal,
         closeProductModal,
         addNewProduct,
+        cancelOrder,
       }}
     >
       {children}
