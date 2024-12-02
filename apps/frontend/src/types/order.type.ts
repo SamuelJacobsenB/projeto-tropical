@@ -1,5 +1,7 @@
+import { Product } from ".";
+
 export interface OrderItem {
-  productId: string;
+  product: Product;
   quantity: number;
 }
 

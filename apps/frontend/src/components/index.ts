@@ -10,3 +10,5 @@ export * from "./shared/productmodal";
 export * from "./shared/button";
 export * from "./shared/quantity";
 export * from "./shared/order";
+export * from "./shared/modalbox";
+export * from "./shared/ordermodal";
