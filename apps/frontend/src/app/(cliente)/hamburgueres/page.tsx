@@ -1,7 +1,7 @@
 "use client";
 
-import { useProducts } from "@/hooks/useProducts";
-import { useProductModal } from "@/contexts/productmodal.provider";
+import { useProducts } from "@/hooks";
+import { useProductModal } from "@/contexts";
 import Image from "next/image";
 import { Template, LoadPage, ProductCard } from "@/components";
 

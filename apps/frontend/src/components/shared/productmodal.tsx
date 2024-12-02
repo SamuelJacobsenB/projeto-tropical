@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useProductModal } from "@/contexts/productmodal.provider";
-import { useMessage } from "@/contexts/message.provider";
+import { useMessage, useProductModal, useOrder } from "@/contexts";
 import { I, Button, Quantity } from "@/components";
 
 export const ProductModal = () => {
   const { showMessage } = useMessage();
-  const { product, closeProductModal, addNewProduct } = useProductModal();
+  const { product, closeProductModal } = useProductModal();
+  const { addNewProduct } = useOrder();
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
@@ -19,6 +19,7 @@ export const ProductModal = () => {
   function HandleAddProduct() {
     if (product) {
       addNewProduct(product.id, quantity, product.price);
+      closeProductModal();
       showMessage("Produto adicionado", "success");
     }
   }
@@ -28,7 +29,7 @@ export const ProductModal = () => {
   }
 
   return (
-    <div className="flex items-center justify-center h-screen w-screen p-4 absolute z-30 bg-black bg-opacity-80">
+    <div className="flex items-center justify-center h-screen w-screen p-4 fixed z-30 bg-black bg-opacity-80">
       <article className="flex flex-col max-w-2xl w-full bg-white overflow-hidden rounded-sm">
         <div
           className={`w-full h-96 p-4 bg-cover`}

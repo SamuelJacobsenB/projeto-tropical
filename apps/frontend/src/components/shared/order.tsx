@@ -1,10 +1,10 @@
 "use client";
 
-import { useProductModal } from "@/contexts/productmodal.provider";
+import { useOrder } from "@/contexts";
 import { Button } from "..";
 
 export const Order = () => {
-  const { order, cancelOrder } = useProductModal();
+  const { order, cancelOrder } = useOrder();
 
   if (!order || order.length === 0) {
     return null;

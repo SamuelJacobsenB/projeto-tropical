@@ -1,9 +1,12 @@
 "use client";
 
 import React from "react";
-import { QueryProvider } from "./queryprovider";
-import { MessageProvider } from "./message.provider";
-import { ProductModalProvider } from "./productmodal.provider";
+import {
+  QueryProvider,
+  MessageProvider,
+  ProductModalProvider,
+  OrderProvider,
+} from ".";
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -14,7 +17,9 @@ export const Providers = ({ children }: ProvidersProps) => {
     <>
       <QueryProvider>
         <MessageProvider>
-          <ProductModalProvider>{children}</ProductModalProvider>
+          <ProductModalProvider>
+            <OrderProvider>{children}</OrderProvider>
+          </ProductModalProvider>
         </MessageProvider>
       </QueryProvider>
     </>

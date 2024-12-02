@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Providers } from "@/contexts/providers";
+import { Providers } from "@/contexts";
 import { Message, ProductModal, Order } from "@/components";
 import "./globals.css";
 
