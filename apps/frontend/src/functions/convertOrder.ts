@@ -3,6 +3,7 @@ import { OrderItem, Order } from "@/types";
 export function convertOrder(
   orderItens: OrderItem[],
   table: number,
+  value: number,
   obs?: string
 ): Order {
   const productIdsArray: string[] = [];
@@ -16,6 +17,7 @@ export function convertOrder(
   return {
     productIds,
     table,
+    value,
     obs,
   };
 }

@@ -9,5 +9,6 @@ export interface Order {
   id?: string;
   productIds: string;
   table: number;
+  value: number;
   obs?: string;
 }

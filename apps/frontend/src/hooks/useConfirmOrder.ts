@@ -1,24 +1,28 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 import { api } from "@/services";
 import { convertOrder } from "@/functions";
 import { OrderItem, Product } from "@/types";
 
-export function useConfirmOrder(
-  orderItens: OrderItem[],
-  table: number,
-  obs?: string
-) {
-  async function postData() {
-    const order = convertOrder(orderItens, table, obs);
+export function useConfirmOrder() {
+  const [error, setError] = useState<boolean | null>(null);
 
-    const response = await api.post("/products", order);
-    return response.data as Product;
+  async function postData(
+    orderItens: OrderItem[],
+    table: number,
+    value: number,
+    obs?: string
+  ) {
+    try {
+      const order = convertOrder(orderItens, table, value, obs);
+
+      const response = await api.post("/orders", order);
+      return response.data as Product;
+    } catch {
+      setError(true);
+    }
   }
 
-  return useMutation({
-    mutationKey: ["useConfirmOrder"],
-    mutationFn: postData,
-  });
+  return { postData, error };
 }
