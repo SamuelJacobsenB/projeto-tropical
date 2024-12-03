@@ -5,13 +5,9 @@ export interface OrderItem {
   quantity: number;
 }
 
-export interface UnconvertedOrder {
-  products: OrderItem[];
-  table: number;
-}
-
 export interface Order {
-  id: string;
+  id?: string;
   productIds: string;
   table: number;
+  obs?: string;
 }

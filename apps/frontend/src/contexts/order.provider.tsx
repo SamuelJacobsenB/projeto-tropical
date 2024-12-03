@@ -22,23 +22,48 @@ export const OrderProvider = ({ children }: ProductModalProviderProps) => {
   const [order, setOrder] = useState<OrderItem[] | null>(null);
   const [value, setValue] = useState<number | null>(null);
 
+  function calcValue(updatedOrder: OrderItem[]) {
+    const newValue = updatedOrder.reduce(
+      (acc, curr) => acc + curr.product.price * curr.quantity,
+      0
+    );
+
+    return newValue;
+  }
+
   const addNewProduct = useCallback(
     (product: Product, quantity: number) => {
-      const newOrder: OrderItem = {
-        product,
-        quantity,
-      };
+      const ifProductExists = order?.find(
+        (orderItem) => orderItem.product.id === product.id
+      );
+
+      if (ifProductExists && order) {
+        const updatedOrder = order.map((orderItem) => {
+          if (orderItem.product.id === product.id) {
+            orderItem.quantity += quantity;
+          }
+
+          return orderItem;
+        });
+
+        setOrder(updatedOrder);
+      } else {
+        const newOrder: OrderItem = {
+          product,
+          quantity,
+        };
+
+        if (order && order !== null) {
+          setOrder([...order, newOrder]);
+        } else {
+          setOrder([newOrder]);
+        }
+      }
 
       if (value !== null) {
         setValue(value + product.price * quantity);
       } else {
         setValue(product.price * quantity);
-      }
-
-      if (order && order !== null) {
-        setOrder([...order, newOrder]);
-      } else {
-        setOrder([newOrder]);
       }
     },
     [order, value]
@@ -52,12 +77,7 @@ export const OrderProvider = ({ children }: ProductModalProviderProps) => {
         );
 
         if (updatedOrder && updatedOrder.length > 0) {
-          setValue(
-            updatedOrder.reduce(
-              (acc, curr) => acc + curr.product.price * curr.quantity,
-              0
-            )
-          );
+          setValue(calcValue(updatedOrder));
 
           setOrder(updatedOrder);
         } else {
@@ -80,12 +100,7 @@ export const OrderProvider = ({ children }: ProductModalProviderProps) => {
           return item;
         });
 
-        setValue(
-          updatedOrder.reduce(
-            (acc, curr) => acc + curr.product.price * curr.quantity,
-            0
-          )
-        );
+        setValue(calcValue(updatedOrder));
 
         setOrder(updatedOrder);
       }

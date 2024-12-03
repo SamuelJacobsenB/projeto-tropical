@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@/services/api";
+import { api } from "@/services";
 import { Category, Product } from "@/types/index";
 
 export function useProducts(category: Category) {

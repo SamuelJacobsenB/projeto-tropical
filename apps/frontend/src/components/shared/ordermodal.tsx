@@ -50,7 +50,7 @@ export const OrderModal = ({ isVisible, setIsVisible }: OrderModalProps) => {
 
           return (
             <div
-              className="flex flex-col items-center justify-center h-fit rounded p-2 text-white bg-light-primary"
+              className="flex flex-col items-center justify-cente gap-2 h-fit rounded p-2 text-white bg-light-primary"
               key={product.id}
             >
               <div className="flex justify-between w-full text-2xl">
@@ -70,6 +70,7 @@ export const OrderModal = ({ isVisible, setIsVisible }: OrderModalProps) => {
                 quantity={quantity}
                 increment={() => increment(product.id, quantity)}
                 decrement={() => decrement(product.id, quantity)}
+                className="h-10"
               />
             </div>
           );

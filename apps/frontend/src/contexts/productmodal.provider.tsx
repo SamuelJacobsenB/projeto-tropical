@@ -9,7 +9,7 @@ interface ProductModal {
   value: number | null;
   showProductModal: (_product: Product) => void;
   closeProductModal: () => void;
-  addNewProduct: (productId: string, quantity: number, _value: number) => void;
+  addNewProduct: (product: Product, quantity: number) => void;
   cancelOrder: () => void;
 }
 
@@ -35,16 +35,16 @@ export const ProductModalProvider = ({
   }, []);
 
   const addNewProduct = useCallback(
-    (productId: string, quantity: number, _value: number) => {
+    (product: Product, quantity: number) => {
       const newOrder: OrderItem = {
-        productId,
+        product,
         quantity,
       };
 
       if (value !== null) {
-        setValue(value + _value * quantity);
+        setValue(value + product.price * quantity);
       } else {
-        setValue(_value * quantity);
+        setValue(product.price * quantity);
       }
 
       if (order && order !== null) {
