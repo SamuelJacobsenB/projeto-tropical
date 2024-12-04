@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Template, LoadPage, ProductCard } from "@/components";
 
 const HamburgueresPage = () => {
-  const { data, isFetching, error } = useProducts("hamburguer");
+  const { data, isFetching, error } = useProducts("bebida");
   const { showProductModal } = useProductModal();
 
   if (isFetching) {
@@ -21,7 +21,7 @@ const HamburgueresPage = () => {
     <Template>
       <Image
         src="/hamburguer-slogan.jpg"
-        alt="Imagem Hambúrguer"
+        alt="Imagem Bebidas"
         width={1500}
         height={1500}
         className="flex w-full h-80 object-cover"
