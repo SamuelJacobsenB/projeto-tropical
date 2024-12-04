@@ -26,7 +26,7 @@ export const Input = ({
   required = false,
 }: InputProps) => {
   return (
-    <div className="flex flex-col gap-1 p-2">
+    <div className="flex flex-col gap-1 p-2 w-full">
       <label htmlFor={name} className="text-lg font-semibold text-gray-700">
         {label}
       </label>

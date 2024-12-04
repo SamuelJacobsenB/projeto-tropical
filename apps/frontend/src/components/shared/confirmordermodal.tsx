@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useOrder, useMessage } from "@/contexts";
-import { useConfirmOrder } from "@/hooks";
+import { postOrder } from "@/functions";
 import { ModalBox, I, Button, Input } from "..";
 
 interface ConfirmOrderModalProps {
@@ -20,13 +20,11 @@ export const ConfirmOrderModal = ({
   const [table, setTable] = useState(1);
   const [obs, setObs] = useState("");
 
-  const { postData, error } = useConfirmOrder();
-
   async function handleConfirmOrder() {
     try {
-      await postData(order!, table, value!, obs);
+      const response = await postOrder(order!, table, value!, obs);
 
-      if (error) {
+      if (response.error) {
         throw new Error();
       }
 
