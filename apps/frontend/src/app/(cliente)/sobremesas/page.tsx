@@ -20,7 +20,7 @@ const HamburgueresPage = () => {
   return (
     <Template>
       <Image
-        src="/hamburguer-slogan.jpg"
+        src="/sobremesa-slogan.jpg"
         alt="Imagem Sobremesa"
         width={1500}
         height={1500}
