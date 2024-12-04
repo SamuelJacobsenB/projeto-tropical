@@ -10,6 +10,7 @@ interface InputProps {
   className?: string;
   maxLength?: number;
   minLength?: number;
+  step?: string;
   required?: boolean;
 }
 
@@ -23,6 +24,7 @@ export const Input = ({
   className,
   maxLength,
   minLength,
+  step,
   required = false,
 }: InputProps) => {
   return (
@@ -42,6 +44,7 @@ export const Input = ({
         min={minLength}
         maxLength={maxLength}
         max={maxLength}
+        step={step}
         required={required}
       />
     </div>

@@ -1,14 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, useParams } from "next/navigation";
 import { useMessage } from "@/contexts";
-import { postProduct } from "@/functions";
-import { FormPage, Input, Select } from "@/components";
+import { useOneProduct } from "@/hooks";
+import { patchProduct } from "@/functions";
+import { FormPage, Input, LoadPage, Select } from "@/components";
 import { Category } from "@/types";
 
-const CadastrarPage = () => {
+const ModificarPage = () => {
   const router = useRouter();
+  const params = useParams();
+
+  const id = params.id;
+  const { data, isLoading, error } = useOneProduct(id as string);
+
   const { showMessage } = useMessage();
 
   const [name, setName] = useState("");
@@ -30,6 +36,16 @@ const CadastrarPage = () => {
     { value: "porcao", label: "Porção" },
   ];
 
+  useEffect(() => {
+    if (data) {
+      setName(data.name);
+      setPrice(data.price);
+      setDescription(data.description);
+      setImage(data.image);
+      setCategory(data.category);
+    }
+  }, [data]);
+
   async function handleSubmit() {
     try {
       if (category === "-- Escolha uma categoria --") {
@@ -37,6 +53,7 @@ const CadastrarPage = () => {
       }
 
       const product = {
+        id: id as string,
         name,
         price,
         description,
@@ -44,22 +61,30 @@ const CadastrarPage = () => {
         category,
       };
 
-      const response = await postProduct(product);
+      const response = await patchProduct(product);
 
       if (response.error) {
         throw new Error();
       }
 
+      showMessage("Produto atualizado com sucesso", "success");
       router.push("/gerenciar");
-      showMessage("Produto cadastrado com sucesso", "success");
     } catch {
-      showMessage("Ocorreu um erro ao cadastrar o produto", "error");
+      showMessage("Ocorreu um erro ao atualizar o produto", "error");
     }
+  }
+
+  if (isLoading) {
+    return <LoadPage />;
+  }
+
+  if (error) {
+    return <div>Erro ao carregar o produto: {error.message}</div>;
   }
 
   return (
     <FormPage
-      title="Cadastrar novo pedido:"
+      title="Modificar pedido:"
       onSubmit={async () => await handleSubmit()}
     >
       <Input
@@ -115,4 +140,4 @@ const CadastrarPage = () => {
   );
 };
 
-export default CadastrarPage;
+export default ModificarPage;

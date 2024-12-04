@@ -11,7 +11,7 @@ export function useProducts(category: Category) {
   }
 
   return useQuery({
-    queryKey: ["hamburgueres"],
+    queryKey: [category],
     queryFn: fetchData,
   });
 }

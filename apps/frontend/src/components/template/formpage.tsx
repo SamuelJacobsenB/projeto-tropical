@@ -9,6 +9,12 @@ interface FormPageProps {
 }
 
 export const FormPage = ({ children, title, onSubmit }: FormPageProps) => {
+  function handleSubmit(evt: React.FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
+
+    onSubmit(evt);
+  }
+
   return (
     <div className="grid grid-cols-12 w-screen h-screen">
       <div className="md:col-span-7 lg:md:col-span-9 md:flex md:justify-center md:items-center md:bg-light-primary md:h-screen hidden">
@@ -27,7 +33,7 @@ export const FormPage = ({ children, title, onSubmit }: FormPageProps) => {
         <h1 className="text-3xl">{title}</h1>
         <form
           method="post"
-          onSubmit={onSubmit}
+          onSubmit={(evt) => handleSubmit(evt)}
           className="flex flex-col items-center gap-6 w-full"
         >
           {children}
