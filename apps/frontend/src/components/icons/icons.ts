@@ -4,6 +4,8 @@ import {
   IoClose,
   IoAddCircle,
   IoRemoveCircle,
+  IoTrash,
+  IoPencil,
 } from "react-icons/io5";
 
 export const I = {
@@ -12,4 +14,6 @@ export const I = {
   Close: IoClose,
   Add: IoAddCircle,
   Remove: IoRemoveCircle,
+  Delete: IoTrash,
+  Edit: IoPencil,
 };

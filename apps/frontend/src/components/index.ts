@@ -19,3 +19,5 @@ export * from "./shared/select";
 export * from "./template/templatemenu";
 export * from "./template/admmenu";
 export * from "./template/admtemplate";
+export * from "./shared/modaloptions";
+export * from "./shared/admproductcard";

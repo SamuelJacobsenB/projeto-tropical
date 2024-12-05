@@ -1,10 +1,25 @@
 "use client";
 
+import { useMessage } from "@/contexts";
 import { useAllProducts } from "@/hooks";
-import { AdmTemplate, LoadPage } from "@/components";
+import { deleteProduct } from "@/functions";
+import { AdmProductCard, AdmTemplate, LoadPage } from "@/components";
 
 const ModificarPage = () => {
-  const { data, isLoading, error } = useAllProducts();
+  const { showMessage } = useMessage();
+  const { data, isLoading, error, refetch } = useAllProducts();
+
+  async function handleDelete(productId: string) {
+    const response = await deleteProduct(productId);
+
+    if (response.error) {
+      showMessage("Ocorreu um erro ao excluir o produto", "error");
+      return;
+    }
+
+    showMessage("Produto excluído com sucesso", "success");
+    await refetch();
+  }
 
   if (isLoading) {
     return <LoadPage />;
@@ -27,9 +42,18 @@ const ModificarPage = () => {
           </h2>
         )}
 
-        {(data && data.length > 0) && data.map(product => (
-            
-        ))}
+        {data &&
+          data.length > 0 &&
+          data.map((product) => (
+            <AdmProductCard
+              key={product.id}
+              src={product.image}
+              alt={product.name}
+              name={product.name}
+              href={`/admin/modificar/${product.id}`}
+              onDelete={async () => await handleDelete(product.id)}
+            />
+          ))}
       </div>
     </AdmTemplate>
   );

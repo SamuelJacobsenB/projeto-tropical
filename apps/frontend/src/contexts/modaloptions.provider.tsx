@@ -23,7 +23,7 @@ export const ModalOptionsProvider = ({
 
   const showModalOptions = useCallback((text: string, action: () => void) => {
     setText(text);
-    setAction(action);
+    setAction(() => action);
   }, []);
 
   const closeModalOptions = useCallback(() => {

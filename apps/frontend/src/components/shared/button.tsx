@@ -11,7 +11,7 @@ export const Button = ({ type, className, children, onClick }: ButtonProps) => {
   return (
     <button
       type={type}
-      className={`p-3 px-10 text-lg rounded ${className}`}
+      className={`p-3 flex justify-center text-lg rounded ${className}`}
       onClick={onClick}
     >
       {children}
