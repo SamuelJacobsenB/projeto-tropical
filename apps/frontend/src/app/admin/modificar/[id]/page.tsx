@@ -8,7 +8,7 @@ import { patchProduct } from "@/functions";
 import { FormPage, Input, LoadPage, Select } from "@/components";
 import { Category } from "@/types";
 
-const ModificarPage = () => {
+const ModificarIdPage = () => {
   const router = useRouter();
   const params = useParams();
 
@@ -140,4 +140,4 @@ const ModificarPage = () => {
   );
 };
 
-export default ModificarPage;
+export default ModificarIdPage;

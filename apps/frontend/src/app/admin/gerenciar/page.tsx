@@ -1,5 +1,9 @@
-import React from "react";
+import { AdmTemplate } from "@/components";
 
 export const GerenciarPage = () => {
-  return <div>GerenciarPage</div>;
+  return (
+    <AdmTemplate>
+      <h1>Gerenciar pedidos:</h1>
+    </AdmTemplate>
+  );
 };

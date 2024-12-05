@@ -18,3 +18,4 @@ export * from "./template/formpage";
 export * from "./shared/select";
 export * from "./template/templatemenu";
 export * from "./template/admmenu";
+export * from "./template/admtemplate";
