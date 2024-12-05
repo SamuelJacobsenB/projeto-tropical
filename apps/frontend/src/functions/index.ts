@@ -4,3 +4,4 @@ export * from "./postOrder";
 export * from "./postProduct";
 export * from "./patchProduct";
 export * from "./deleteProduct";
+export * from "./deleteOrder";

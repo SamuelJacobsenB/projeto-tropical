@@ -68,7 +68,7 @@ const ModificarIdPage = () => {
       }
 
       showMessage("Produto atualizado com sucesso", "success");
-      router.push("/gerenciar");
+      router.push("/modificar");
     } catch {
       showMessage("Ocorreu um erro ao atualizar o produto", "error");
     }

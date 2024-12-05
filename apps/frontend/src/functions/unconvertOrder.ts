@@ -1,20 +1,22 @@
 import { api } from "@/services";
-import { Order, Product } from "@/types";
+import { Order, OrderItem, Product } from "@/types";
 
-export function unconvertOrder(order: Order) {
+export function unconvertOrder(order: Order): OrderItem[] {
   const productInfoList: string[] = order.productIds.split(",");
 
-  const orderArray = productInfoList.map(async (productInfo) => {
+  const orderArray: OrderItem[] = [];
+
+  productInfoList.map(async (productInfo) => {
     const [productId, quantity] = productInfo.split(":");
 
     const response = await api.get(`/products/${productId}`);
     const product = response.data as Product;
 
     if (product) {
-      return {
+      orderArray.push({
         product,
         quantity: Number(quantity),
-      };
+      });
     }
   });
 

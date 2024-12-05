@@ -21,3 +21,4 @@ export * from "./template/admmenu";
 export * from "./template/admtemplate";
 export * from "./shared/modaloptions";
 export * from "./shared/admproductcard";
+export * from "./shared/orderinfo";

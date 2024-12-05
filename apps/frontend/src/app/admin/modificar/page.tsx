@@ -31,7 +31,7 @@ const ModificarPage = () => {
 
   return (
     <AdmTemplate>
-      <h1 className="text-white text-3xl m-8">Modificar Produtos:</h1>
+      <h1 className="text-white text-3xl m-8">Modificar produtos:</h1>
       <h2 className="text-white text-xl text-center">
         Todos os produtos listados abaixo:
       </h2>
