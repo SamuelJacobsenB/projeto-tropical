@@ -32,6 +32,7 @@ export const ProductCard = ({
       />
       <div className="flex flex-col justify-center w-full">
         <Button onClick={() => router.push(href)}>Modificar</Button>
+        <Button onClick={}></Button>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import {
   MessageProvider,
   ProductModalProvider,
   OrderProvider,
+  ModalOptionsProvider,
 } from ".";
 
 interface ProvidersProps {
@@ -18,7 +19,9 @@ export const Providers = ({ children }: ProvidersProps) => {
       <QueryProvider>
         <MessageProvider>
           <ProductModalProvider>
-            <OrderProvider>{children}</OrderProvider>
+            <OrderProvider>
+              <ModalOptionsProvider>{children}</ModalOptionsProvider>
+            </OrderProvider>
           </ProductModalProvider>
         </MessageProvider>
       </QueryProvider>
