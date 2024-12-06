@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useCallback, createContext, useContext } from "react";
-import { unconvertOrder } from "@/functions";
-import { Order, OrderItem } from "@/types";
+import { OrderItem } from "@/types";
 
 interface OrderModal {
   order: OrderItem[] | null;
-  showOrderModal: (_order: Order) => void;
+  obs: string | null;
+  showOrderModal: (_order: OrderItem[], obs?: string) => void;
   closeOrderModal: () => void;
 }
 
@@ -18,12 +18,15 @@ interface OrderModalProviderProps {
 
 export const OrderModalProvider = ({ children }: OrderModalProviderProps) => {
   const [order, setOrder] = useState<OrderItem[] | null>(null);
+  const [obs, setObs] = useState<string | null>(null);
 
-  const showOrderModal = useCallback(async (_order: Order) => {
-    const unconvertedOrder = unconvertOrder(_order);
-    console.log(unconvertedOrder);
-    setOrder(unconvertedOrder);
-  }, []);
+  const showOrderModal = useCallback(
+    async (_order: OrderItem[], obs?: string) => {
+      setOrder(_order);
+      setObs(obs ? obs : null);
+    },
+    []
+  );
 
   const closeOrderModal = useCallback(() => {
     setOrder(null);
@@ -33,6 +36,7 @@ export const OrderModalProvider = ({ children }: OrderModalProviderProps) => {
     <OrderModalContext.Provider
       value={{
         order,
+        obs,
         showOrderModal,
         closeOrderModal,
       }}
